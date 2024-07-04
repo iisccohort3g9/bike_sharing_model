@@ -4,12 +4,14 @@ file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
+# import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import mean_squared_error, r2_score
 
 from bike_sharing_model.config.core import config
 from bike_sharing_model.pipeline import bike_sharing_pipeline
+# from bike_sharing_model.predict import make_prediction
 from bike_sharing_model.processing.data_manager import load_dataset, save_pipeline
 
 
@@ -39,7 +41,8 @@ def run_training() -> None:
     print("Mean squared error:", mean_squared_error(y_test, y_pred))
 
     # persist trained model
-    save_pipeline(pipeline_to_persist=bike_sharing_pipeline)
+    save_pipeline(pipeline_to_persist= bike_sharing_pipeline)
+    # printing the score
     
 if __name__ == "__main__":
     run_training()

@@ -29,7 +29,7 @@ class AppConfig(BaseModel):
 
     package_name: str
     training_data_file: str
-    #test_data_file: str
+    # test_data_file: str
     pipeline_save_file: str
 
 
@@ -38,7 +38,6 @@ class ModelConfig(BaseModel):
     All configuration relevant to model
     training and feature engineering.
     """
-
     target: str
     features: List[str]
     unused_fields: List[str]

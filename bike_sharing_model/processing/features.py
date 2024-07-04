@@ -71,6 +71,7 @@ class Mapper(BaseEstimator, TransformerMixin):
         X[self.variable] = X[self.variable].map(self.mapping).astype(int)
         return X
 
+
 class OutlierHandler(BaseEstimator, TransformerMixin):
     """
     Change the outlier values:

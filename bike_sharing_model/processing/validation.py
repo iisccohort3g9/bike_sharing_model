@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 from pydantic import BaseModel, ValidationError
 
+from bike_sharing_model.config.core import config
 from bike_sharing_model.processing.data_manager import pre_pipeline_preparation
 
 

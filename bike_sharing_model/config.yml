@@ -1,7 +1,7 @@
 # Package Overview
 package_name: bike_sharing_model
 
-
+# bike_sharing_model\datasets\bike-sharing-dataset.csv
 # Data Files
 training_data_file: bike-sharing-dataset.csv
 #test_data_file: test.csv
@@ -19,7 +19,7 @@ features:      # final features to be use
   - holiday 
   - workingday 
   - weathersit
-  - temp  # generated  by  Sibsp + Parch +1 <--Before pipeline alongwith loading the data
+  - temp    # generated  by  Sibsp + Parch +1 <--Before pipeline alongwith loading the data
   - atemp   # generated cabin              <--Before pipeline alongwith loading the data
   - hum
   - windspeed
@@ -45,10 +45,12 @@ holiday_var: holiday
 workingday_var: workingday
 hr_var: hr
 
+
+
 year_mapping:
   2011: 0
   2012: 1
-
+  
 map_yr:
   2011: 0
   2012: 1
