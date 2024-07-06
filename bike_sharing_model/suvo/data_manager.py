@@ -21,9 +21,13 @@ from bike_sharing_model.processing.features import OutlierHandler, WeekdayImpute
 # 1. Extracts the title (Mr, Ms, etc) from the name variable
 def get_year_month(dataframe):
     X = dataframe.copy()
-    X['dteday'] = pd.to_datetime(X['dteday'], format='%Y-%m-%d')
+    # Convert 'dteday' to datetime
+    # X['dteday'] = pd.to_datetime(X['dteday'], format='%Y-%m-%d')
+    X['dteday'] = pd.to_datetime(X['dteday'], format='%Y-%m-%d', errors='coerce')
+    print(X['dteday'].head())
     X['year'] = X['dteday'].dt.year
     X['month'] = X['dteday'].dt.month_name()
+    # Extract day
     X['day'] = X['dteday'].dt.day_name().str[:3]
     return X
 
@@ -32,12 +36,9 @@ def pre_pipeline_preparation(*, data_frame: pd.DataFrame) -> pd.DataFrame:
     # Convert dteday to time stamp
     data_frame = get_year_month(data_frame)
 
-    #pipeline_list = [
-    #    ('weekday_imputation', WeekdayImputer(variable=config.model_config.weekday_var)),
-    #    ('weekday_onehot', WeekdayOneHotEncoder(variables=config.model_config.weekday_var))
-    #]
     pipeline_list = [
-        ('weekday_imputation', WeekdayImputer(variable=config.model_config.weekday_var)),
+        ('weekday_imputation', WeekdayImputer(variable=config.model_config.dteday_var)),
+        ('weekday_onehot', WeekdayOneHotEncoder(variables=config.model_config.dteday_var))
     ]
 
     for i in config.model_config.feature_outlier:

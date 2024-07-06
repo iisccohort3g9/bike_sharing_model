@@ -27,7 +27,7 @@ def make_prediction(*,input_data:Union[pd.DataFrame, dict]) -> dict:
     print(preprocessed_data.columns)
     print("$$$$$$$$$$$$$$$$$$$$$$$$")
     validated_data=preprocessed_data.reindex(columns=config.model_config.features)
-    #print(validated_data)
+    print(f"Data to be used for PREDICT METHOD: {validated_data.columns}")
     results = {"predictions": None, "version": _version}
     
     predictions = bike_sharing_pipe.predict(validated_data)
@@ -44,9 +44,7 @@ def make_prediction(*,input_data:Union[pd.DataFrame, dict]) -> dict:
 
 if __name__ == "__main__":
 
-    data_in={"dteday": "2012-11-05",'season':['winter'],'hr':['7am'],'holiday':["No"],'weekday': 'Mon','workingday':['Yes'],'weathersit':['Clear'],
-                'temp':[26.78],'atemp':[28.9988],'hum':[52.0],'windspeed':[16.9979],'casual': 4,'registered': 135,'yr':[2012],'mnth':['November']}
-
-
-
+    data_in={'dteday':['2012-11-05'], 'season':['winter'],'hr':['7am'],'holiday':["No"],'weekday':['Mon'],'workingday':['Yes'],'weathersit':['Clear'],
+                'temp':[26.78],'atemp':[28.9988],'hum':[52.0],'windspeed':[16.9979],'casual':[4],'registered':[135]}
+    # 'yr':[2012],'mnth':['November']
     make_prediction(input_data=data_in)
